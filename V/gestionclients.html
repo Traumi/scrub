@@ -39,8 +39,8 @@
                   <div class="form-group">
                       <label for="email">Code postal : </label>
                       <input type="text" class="form-control" id="email" placeholder="Entrez le code postal du client" value="<?php echo $client["cp"] ?>">
-                  </div>
-                 <input type="hidden" name="clientId" value="<?php echo $client["id"] ?>">
+                 </div>
+                  <input type="hidden" name="clientId" value="<?php echo $client["id"] ?>">
                   <button type="submit" class="btn btn-primary">Modifier</button>
                   <button type="submit" class="btn btn-danger" formaction="index.php?c=C_Administration&a=supprimerClient">Supprimer</button>
               </form>
