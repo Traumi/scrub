@@ -1,1 +1,66 @@
+<style>
+  .conteneur{
+    width:70%;
+    margin:auto;
+    margin-top:50px;
+  }
+  .top{
+    text-align:center;
+    font-size:30px;
+    font-weight:900;
+    background-color: #ddd;
+    border-top-right-radius:10px;
+    border-top-left-radius:10px;
+  }
+  .contenu{
+    font-size:25px;
+    background-color: #eee;
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .image{
+    width:100%;
+    height:160px;
+    margin:auto;
+    overflow:hidden;
+  }
+  a{
+    color:black;
+  }
+  a:hover{
+    text-decoration: none;
+    color:black;
+  }
+</style>
+<script>
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
+</script>
 
+<div class="conteneur">
+
+  <div class="top">Bienvenue sur
+    <span data-toggle="tooltip" data-placement="bottom" title="Société de Commande et de Réservation Universelle par Bateau">SCRUB</span>
+  </div><!--Société de Commande et de Réservation Universelle par Bateau-->
+  <div class="contenu">
+    <div style="width:100%;text-align:center;text-decoration:underline;padding:20px;">Les derniers produits :</div>
+    <div class="row">
+      <?php require_once('M/M_Produit.php'); require_once('M/M_Image.php'); $prod = getLastProduits(); ?>
+      <?php
+      foreach($prod as $row){
+        echo '<div class="col-md-3 col-xs-6">';
+        echo '<div style="width:98%;margin:auto;text-align:center;font-size:18px;">';
+        $url = getImageByIdproduit($row['idProduit'])->fetch()['url'];
+        echo '<a href="index.php?c=C_Produit&a=voirdetail&id='.$row['idProduit'].'"><img src="'.$url.'" alt="'.$row['designation'].'" class="img-thumbnail image"/>';
+        echo $row['designation'];
+        echo '</a>';
+        echo '</div>';
+        echo '</div>';
+      }
+      ?>
+    </div>
+    <br>
+  </div>
+
+</div>
