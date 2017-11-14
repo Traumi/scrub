@@ -1,12 +1,13 @@
-<div class="card">
+<div>
 	<h2 align = "center"> Liste des Produits </h2>
-	<div class="card-body">
+	<div>
 		<table>
 			<tr>
 				<td>Désignation</td>
 				<td>Prix HT</td>
 				<td>T.V.A</td>
 				<td>Description</td>
+				<td>Image</td>
 				<td>Modifier</td>
 				<td>Supprimer</td>
 			</tr>
@@ -26,6 +27,9 @@
 							<input type="text" id="description" name="description" class="form-control" value="<?php echo $produit["description"]?>">
 						</td>
 						<td>
+							<input type="text" id="url" name="url" class="form-control" value="<?php echo $image["url"]?>">
+						</td>
+						<td>
 							<button type = "submit" class="btn btn-success">Modifier</button>
 						</td>
 						<td>
@@ -36,7 +40,7 @@
 			<?php endforeach; ?>
 		</table>
 		<br/>
-		<form>
+		<form action="index&" method="post">
 			<button type="submit" class="btn btn-success">Ajouter Produit</button>
 		</form>
 	</div>
