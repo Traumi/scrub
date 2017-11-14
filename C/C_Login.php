@@ -65,7 +65,9 @@ function inscrire(){
           $err[0] = "Erreur lors de l'ajout du client.";
           require("V/login.html");
         }else{
+          require("V/header.html");
           require("V/accueil.html");
+          require("V/footer.html");
         }
       }
     }
