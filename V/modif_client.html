@@ -1,0 +1,40 @@
+
+<div class="col-md-12 col-xs-12" id="modification">
+	<form method="post" action="index.php?c=C_Clien&a=modifier">
+		<div class="form-group">
+			<h3 class="col-md-12 col-xs-12">Modification du client</h3>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="mail" placeholder="Adresse mail" pattern="^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$" maxlength="100" title="Email incorrect" value="<?php echo $client['mail']?>"/>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="password" name="old_password" placeholder="Mot de passe actuel" />
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="password" name="new_password" placeholder="Nouveau mot de passe" />
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="password" name="new_password_confirm" placeholder="Confirmer le nouveau mot de passe" />
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="prenom" placeholder="Prénom" pattern="[a-zA-Z.-]{0,50}" maxlength="50" value="<?php echo $client['prenom']?>"/>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="nom" placeholder="Nom de famille" pattern="[a-zA-Z.-]{0,50}" maxlength="50" value="<?php echo $client['mail']?>"/>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="rue" placeholder="Rue" maxlength="200" value="<?php echo $client['rue']?>"/>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="complement" placeholder="Complément" maxlength="200" value="<?php echo $client['complement']?>"/>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="ville" placeholder="Ville" maxlength="100" value="<?php echo $client['ville']?>"/>
+		</div>
+		<div class="form-group">
+			<input class="form-control" type="text" name="cp" placeholder="Code postal" pattern="[0-9]{5}" maxlength="5" title="Le code postal doit être composé de 5 chiffres" value="<?php echo $client['cp']?>"/>
+		</div>
+		<h3><input type="submit" class="btn btn-success" value="Enregistrer"/></h3>
+	</form>
+
+</div>
