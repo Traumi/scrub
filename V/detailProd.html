@@ -1,19 +1,51 @@
-<h1>Description du produit</h1>
-<div class = "card">
-	<div class="card-body">
-		<h2 class = "card-title"><?php echo $produit["designation"]?></h2>
-		<!--<?php foreach($images as $image) : ?>
-			<img class = "card-img" src = "<?php echo $image["url"]?>"/>
-		<?php endforeach; ?>-->
-		<p class = "card-text">Prix TTC : <?php echo $produit["prix"] ?></p>
-		<p class = "card-text"><?php echo $produit["description"]?></p>
-		<br/>
-		<form action="index.php?c=C_Commande&a=acheter" method="post">
-			<div class="form-group">
-				<label for="quantity">Quantité : </label>
-				<input type="number" class="form-control" id="quantity" name="quantity" value="1">
-				<button type="submit" class="btn btn-success">Acheter</button>
-			</div>
-		</form>
+<style>
+  img{
+    max-height:300px;
+  }
+  h2, .image{
+    text-align:center;
+  }
+  input, button, label{
+    float:right;
+  }
+  label{
+    padding-top:6px;
+    padding-right:5px;
+  }
+  .fond{
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100%;
+    border: solid lightgrey 1px;
+    border-radius:5px;
+    margin-top:10px;
+    width: 100%;
+    padding-top: 75%; /* 16:9 Aspect Ratio */
+  }
+  .card-text, form{
+    text-align:right;
+  }
+</style>
+<div>
+	<div>
+		<h2><?php echo $produit["designation"]?></h2>
+		<?php
+      $url = getImageByIdproduit($produit['idProduit'])->fetch()['url'];
+    ?>
+    <div style="width:30%;margin:auto;">
+      <div class="fond" style="background-image: url('<?php echo $url ?>');"></div>
+      <div class = "card-text">Prix TTC : <span style="font-size:24px;"><?php echo $produit["prix"] ?> €</span></div>
+  		<blockquote style="font-size:15px;"><?php echo $produit["description"]?></blockquote>
+  		<form action="index.php?c=C_Commande&a=acheter" method="post">
+
+  			<div class="form-group">
+          <button type="submit" class="btn btn-success"><div style="font-size:20px;" class="glyphicon glyphicon-shopping-cart"></div></button>
+  				<input type="number" class="form-control" style="width:70px;" id="quantity" name="quantity" value="1">
+          <label for="quantity">Quantité : </label>
+  			</div>
+  		</form>
+    </div>
+
+
 	</div>
 </div>
