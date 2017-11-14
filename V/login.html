@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <link href="V/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="V/bootstrap/js/jquery-3.2.1.min.js"></script>
+		<script src="V/bootstrap/js/bootstrap.js"></script>
+    <script>
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		</script>
+    <script>
+      function inscription(){
+        document.getElementById("connexion").style.display = "none";
+        document.getElementById("inscription").style.display = "block";
+      }
+      function connexion(){
+        document.getElementById("connexion").style.display = "block";
+        document.getElementById("inscription").style.display = "none";
+      }
+    </script>
+    <style>
+      #connexion, #inscription{
+        width:30%;
+        margin-left:35%;
+        text-align:right;
+      }
+      h3{
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <?php
+        if(isset($err)){
+
+          for($i=0;$i<sizeof($err);$i++){
+            echo '<div class="alert alert-danger" style="text-align:center;margin:10px;">';
+            echo '<strong>Erreur ! </strong>';
+            echo $err[$i];
+            echo '</div>';
+          }
+
+        }
+
+      ?>
+      <div class="col-md-12 col-xs-12" id="connexion">
+        <form method="post" action="index.php?c=C_Login&a=connecter">
+          <div class="form-group">
+  					<h3 class="col-md-12 col-xs-12">Connexion</h3>
+  				</div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="mail" placeholder="Adresse mail" maxlength="100"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="pass" placeholder="Mot de passe"/>
+          </div>
+          <a onclick="inscription()">Pas encore de compte ? Inscrivez vous ici !</a>
+          <h3><input type="submit" class="btn btn-success" value="Valider"/></h3>
+        </form>
+
+      </div>
+      <div class="col-md-12 col-xs-12" id="inscription">
+        <form method="post" action="index.php?c=C_Login&a=inscrire">
+          <div class="form-group">
+  					<h3 class="col-md-12 col-xs-12">Inscription</h3>
+  				</div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="mail" placeholder="Adresse mail" pattern="^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$" maxlength="100" title="Email incorrect"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="pass" placeholder="Mot de passe"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" name="pass2" placeholder="Confirmer mot de passe"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="prenom" placeholder="Prénom" pattern="[a-zA-Z.-]{0,50}" maxlength="50"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="nom" placeholder="Nom de famille" pattern="[a-zA-Z.-]{0,50}" maxlength="50"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="rue" placeholder="Rue" maxlength="200"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="complement" placeholder="Complément" maxlength="200"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="ville" placeholder="Ville" maxlength="100"/>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="text" name="cp" placeholder="Code postal" pattern="[0-9]{5}" maxlength="5" title="Le code postal doit être composé de 5 chiffres"/>
+          </div>
+          <a onclick="connexion()">Déjà inscrit ? Connectez vous ici !</a>
+          <h3><input type="submit" class="btn btn-success" value="Valider"/></h3>
+        </form>
+
+      </div>
+    </div>
+    <!-- Manipulations JS sur le site -->
+    <script>connexion();</script>
+  </body>
+</html>

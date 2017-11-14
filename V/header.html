@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <link href="V/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="V/bootstrap/js/jquery-3.2.1.min.js"></script>
+		<script src="V/bootstrap/js/bootstrap.js"></script>
+    <script>
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		</script>
+    <style>
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">LE SITE</a>
+          <!--<a  href="index.php"><img class="navbar-brand" src="V/img/logo.png" style="margin:-5px;height:60px;"/></a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="index.php?c=C_Vitrine&a=afficher">Vitrine</a></li>
+            <li><form class="navbar-form navbar-right" action="index.php?controle=user&action=lpr2" method="post">
+              <div class="input-group">
+                <input placeholder="Recherche" name="i" class="form-control" type="text">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit" style="">
+                    &nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;
+                  </button>
+                </div>
+              </div>
+            </form></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <?php echo $_SESSION['profil']['prenom'].' '.$_SESSION['profil']['nom'] ?>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="index.php?c=C_Accueil&a=profil">Mon profil</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="index.php?c=C_Login&a=deco">Déconnexion</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
