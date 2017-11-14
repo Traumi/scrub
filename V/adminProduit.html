@@ -1,9 +1,8 @@
-
-<h2 align = "center"> Liste des Produits </h2>
-	<div>
+<div class="card">
+	<h2 align = "center"> Liste des Produits </h2>
+	<div class="card-body">
 		<table>
 			<tr>
-				<td>ID</td>
 				<td>Désignation</td>
 				<td>Prix HT</td>
 				<td>T.V.A</td>
@@ -13,22 +12,32 @@
 			</tr>
 			<?php foreach ($produits as $produit) : ?>
 				<tr>
-					<td><?php echo $produit["idprod"]?></td>
-					<td><?php echo $produit["designation"]?></td>
-					<td><?php echo $produit["prixht"]?></td>
-					<td><?php echo $produit["tva"]?></td>
-					<td><?php echo $produit["description"]?></td>
-					<td>
-						<form action="index.php?" method="post">
+					<form action="index.php?" method="post">
+						<td>
+							<input type="text" id="designation" name="designation" class="form-control" value="<?php echo $produit["designation"]?>">
+						</td>
+						<td>
+							<input type="text" id="prixht" name="prixht" class="form-control" value="<?php echo $produit["prixht"]?>">
+						</td>
+						<td>
+							<input type="text" id="tva" name="tva" class="form-control" value="<?php echo $produit["tva"]?>">
+						</td>
+						<td>
+							<input type="text" id="description" name="description" class="form-control" value="<?php echo $produit["description"]?>">
+						</td>
+						<td>
 							<button type = "submit" class="btn btn-success">Modifier</button>
-						</form>
-					</td>
-					<td>
-						<form action="index.php?" method="post">
-							<button type = "submit" class="btn btn-success">Supprimer</button>
-						</form>
-					</td>
+						</td>
+						<td>
+							<button type = "submit" class="btn btn-success" formaction="index.php?">Supprimer</button>
+						</td>
+					</form>
 				</tr>
 			<?php endforeach; ?>
 		</table>
+		<br/>
+		<form>
+			<button type="submit" class="btn btn-success">Ajouter Produit</button>
+		</form>
 	</div>
+</div>
