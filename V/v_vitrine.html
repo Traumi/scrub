@@ -1,0 +1,19 @@
+<?php require_once "header.html" ?>
+        <?php foreach($produits as $produit) : ?>
+            <div class="card">
+                <img class="card-img-top" src="<?php echo $produit["url"] ?>" alt="Image du produit <?php echo $produit["designation"] ?>">
+                <div class="card-body">
+                    <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
+                    <p class="card-text"><?php echo $produit["description"] ?></p>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="quantity">Quantité :</label>
+                            <input type="number" class="form-control" id="quantity" value="1"> 
+                            <button type="submit" class="btn btn-primary">Acheter</button>
+                        </div>
+                    </form>
+                   
+                </div>
+            </div>
+        <?php endforeach; ?>
+<?php require_once "header.html" ?>
