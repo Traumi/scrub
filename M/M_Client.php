@@ -13,6 +13,12 @@ function getClient ($mail){
 	return $cnx->query($requete)->fetch();
 }
 
+function getClients (){
+	$cnx = spdo::getDB();
+	$requete = "SELECT nom, prenom, mail, rue, complement, ville, cp FROM client";
+	return $cnx->query($requete);
+}
+
 function ajouterClient ($nom, $prenom, $mail, $mdp, $rue, $complement, $ville, $cp){
 	$cnx = spdo::getDB();
 	$requete = "INSERT INTO client VALUES (:nom,:prenom,:mail,:mdp,:rue,:complement,:ville,:cp)";
