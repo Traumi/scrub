@@ -1,11 +1,25 @@
-
-        <?php foreach($produits as $produit) : ?>
-            <div class="card">
-                <img class="card-img-top" src="<?php echo getImageByIdproduit($produit["id"]) ?>" alt="Image du produit <?php echo $produit["designation"] ?>">
-                <div class="card-body">
-                    <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
-                    <p class="card-text"><?php echo $produit["description"] ?></p>
-                    <a href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit["id"] ?>" class="btn btn-success">Voir le produit</button>
-                </div>
-            </div>
-        <?php endforeach; ?>
+<?php foreach($produits as $produit) : ?>
+    <style>
+      .card{
+        padding:2px;
+      }
+      .card-body{
+        border-left : solid black 2px;
+        border-right : solid black 2px;
+        width:100%;
+        border-radius : 10px;
+        padding-left : 15px;
+        padding-right : 15px;
+        padding-top : 1px;
+        padding-bottom : 5px;
+      }
+    </style>
+    <div class="card col-md-3">
+        <!--<img class="card-img-top" src="<?php echo $produit['url'] ?>" alt="Image du produit <?php echo $produit["designation"] ?>">-->
+        <div class="card-body">
+            <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
+            <p class="card-text"><?php echo $produit["description"] ?></p>
+            <a class="btn btn-success" href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit['idProduit'] ?>" class="btn btn-success">Voir le produit</a>
+        </div>
+    </div>
+<?php endforeach; ?>
