@@ -1,0 +1,56 @@
+<?
+
+?>
+<form action="index.php?c=C_Commande&a=creerCommande" method="post">
+
+	<h3>Adresse de livraison</h3>
+	<label for="Nom">Nom :</label>
+	<input type="text" name="nom" id="Nom" value="<?php echo isset($_SESSION['profil']['nom'])? $_SESSION['profil']['nom'] : ""?>" />
+	
+	<label for="Prenom">Prénom :</label>
+	<input type="text" name="prenom" id="Prenom" value="<?php echo isset($_SESSION['profil']['prenom'])? $_SESSION['profil']['prenom'] : ""?>" />
+	
+	<label for="Rue">Rue :</label>
+	<input type="text" name="rue" id="Rue" value="<?php echo isset($_SESSION['profil']['rue'])? $_SESSION['profil']['rue'] : ""?>" />
+	
+	<label for="Complement">Complément d'adresse :</label>
+	<input type="text" name="complement" id="Complement"  value="<?php echo isset($_SESSION['profil']['complement'])? $_SESSION['profil']['complement'] : ""?>" />
+	
+	<label for="Ville"> Ville :</label>
+	<input type="text" name="ville" id="Ville"  value="<?php echo isset($_SESSION['profil']['ville'])? $_SESSION['profil']['ville'] : ""?>" />
+	
+	<label for="CP">Code Postal :</label>
+	<input type="text" name="cp" id="CP" value="<?php echo isset($_SESSION['profil']['cp'])? $_SESSION['profil']['cp'] : ""?>" />
+	
+
+
+
+   
+<!-- Info paiement -->
+	<h3>Informations de paiement</h3>
+	<label for="Nom_Carte">Nom :</label>
+	<input type="text" name="nom_carte" id="Nom_Carte" value=<?php echo isset($_SESSION['profil']['nom'])? $_SESSION['profil']['nom'] : ""?> />
+
+	<label for="Num_Carte">Numéro de carte :</label>
+	<input type="text" name="num_carte" id="Num_Carte" pattern="[0-9]{12}" />
+
+	<label for="cvc">Cryptogramme de sécurité :</label>
+	<input type="text" name="cvc" id="cvc" pattern="[0-9]{3}" placeholder="000"/>
+
+	<label for="mois_expir">Date d'expiration :</label>
+	<select name="mois_expir" id="mois_expir">
+		<?php for($i=1; $i<=12; $i++) : ?>
+			<option value="$i"><?php echo $i<1 ? "0".$i : $i;?></option>
+		<?php endfor; ?>
+	</select>
+	
+	<select name="annee_expir" id="annee_expir">
+		<?php for($i=date(Y); $i<=(date(Y)+20); $i++) : ?>
+			<option value="$i">$i</option>
+		<?php endfor; ?>
+	</select>
+   
+	<input type="submit" value="Continuer"/>
+
+	
+</form>
