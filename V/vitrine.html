@@ -4,8 +4,8 @@
         padding:2px;
       }
       .card-body{
-        border-left : solid black 2px;
-        border-right : solid black 2px;
+        border-left : solid black 1.5px;
+        border-right : solid black 1.5px;
         width:100%;
         border-radius : 10px;
         padding-left : 15px;
@@ -13,13 +13,31 @@
         padding-top : 1px;
         padding-bottom : 5px;
       }
+      .fond{
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100%;
+        border: solid lightgrey 1px;
+        border-radius:5px;
+        margin-top:10px;
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      }
+      .card-title{
+        text-decoration:underline;
+        font-weight:600;
+      }
     </style>
-    <div class="card col-md-3">
-        <!--<img class="card-img-top" src="<?php echo $produit['url'] ?>" alt="Image du produit <?php echo $produit["designation"] ?>">-->
+    <div class="card col-md-3 col-xs-6">
+        <?php $url = getImageByIdproduit($produit['idProduit'])->fetch()['url'] ?>
+
         <div class="card-body">
-            <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
-            <p class="card-text"><?php echo $produit["description"] ?></p>
-            <a class="btn btn-success" href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit['idProduit'] ?>" class="btn btn-success">Voir le produit</a>
+              <!--<img class="card-img-top" src="<?php echo $url ?>" alt="Image du produit <?php echo $produit["designation"] ?>">-->
+              <div class="fond" style="background-image: url('<?php echo $url ?>');"></div>
+              <hr/>
+              <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
+              <p class="card-text">"<?php echo $produit["description"] ?>"</p>
+              <a class="btn btn-success" href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit['idProduit'] ?>" class="btn btn-success">Voir le produit</a>
         </div>
     </div>
 <?php endforeach; ?>
