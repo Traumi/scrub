@@ -5,10 +5,10 @@
                 <div class="card-body">
                     <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
                     <p class="card-text"><?php echo $produit["description"] ?></p>
-                    <form action="" method="post">
+                    <form action="index.php?c=C_Commande&a=acheter" method="post">
                         <div class="form-group">
                             <label for="quantity">Quantité :</label>
-                            <input type="number" class="form-control" id="quantity" value="1"> 
+                            <input type="number" class="form-control" id="quantity" name="quantity" value="1"> 
                             <button type="submit" class="btn btn-primary">Acheter</button>
                         </div>
                     </form>
