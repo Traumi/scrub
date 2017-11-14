@@ -40,6 +40,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Désignation</th>
+                                                    <th scope="col">Prix H.T</th>
                                                     <th scope="col">Prix T.T.C</th>
                                                 </tr>
                                             </thead>
@@ -47,6 +48,7 @@
                                                 <?php foreach($commande->produits as $produit) : ?>
                                                 <tr>
                                                     <td><?php echo $produit["designation"] ?></td> 
+                                                    <td><?php echo $produit["prixHT"] ?></td>
                                                     <td><?php echo $produit["prixTTC"] ?></td>
                                                 </tr>
                                                 <?php endforeach; ?>
