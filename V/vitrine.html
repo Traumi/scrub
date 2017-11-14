@@ -1,7 +1,7 @@
 <?php require_once "header.html" ?>
         <?php foreach($produits as $produit) : ?>
             <div class="card">
-                <img class="card-img-top" src="<?php echo $produit["url"] ?>" alt="Image du produit <?php echo $produit["designation"] ?>">
+                <img class="card-img-top" src="<?php echo getImageByIdproduit($produit["id"]) ?>" alt="Image du produit <?php echo $produit["designation"] ?>">
                 <div class="card-body">
                     <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
                     <p class="card-text"><?php echo $produit["description"] ?></p>
