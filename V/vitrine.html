@@ -1,12 +1,11 @@
-<?php require_once "header.html" ?>
+
         <?php foreach($produits as $produit) : ?>
             <div class="card">
                 <img class="card-img-top" src="<?php echo getImageByIdproduit($produit["id"]) ?>" alt="Image du produit <?php echo $produit["designation"] ?>">
                 <div class="card-body">
                     <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
                     <p class="card-text"><?php echo $produit["description"] ?></p>
-                    <a href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit["id"] ?>" class="btn btn-success">Voir le produit</a>
+                    <a href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit["id"] ?>" class="btn btn-success">Voir le produit</button>
                 </div>
             </div>
         <?php endforeach; ?>
-<?php require_once "header.html" ?>
