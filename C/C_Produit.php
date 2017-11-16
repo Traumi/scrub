@@ -31,6 +31,11 @@ function ajout(){
 }
 
 function ajouter(){
+  require("M/M_Produit.php");
+  //var_dump($_POST);
+  if(isset($_POST['designation']) && isset($_POST['prixht']) && isset($_POST['tva']) && isset($_POST['description'])){
+    ajouterProduit($_POST['designation'], $_POST['prixht'], $_POST['tva'], $_POST['description']);
+  }
   require("V/header.html");
   require("V/ajoutProduit.html");
   require("V/footer.html");
