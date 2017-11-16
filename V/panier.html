@@ -3,6 +3,7 @@
 
 $prixTotal = 0;
 $nbProduit = 0;
+
 if(isset($_SESSION['panier'])){
 
 ?>
@@ -21,28 +22,32 @@ if(isset($_SESSION['panier'])){
                   <tbody>
                       <?php
 
-                      for($i = 0 ; $i < count($_SESSION['panier']) ; $i++){
+                      for($i = 0 ; $i < sizeof($_SESSION['panier']) ; $i++){
+                        if($_SESSION['panier'][$i] != null){
+
                         $produit = getProduitById($_SESSION['panier'][$i]['id'])->fetch();
                         $price =  $produit['prixht']+($produit['prixht']*$produit['tva']/100);
                         $prixTotal += $price * $_SESSION['panier'][$i]['quantity'];
                         $nbProduit += $_SESSION['panier'][$i]['quantity'];
+
                       ?>
-                          <form action="index.php?c=C_Panier&a=miseajour" method="post">
+                          <form action="index.php?c=C_Commande&a=miseajour" method="post">
                               <tr>
                                   <td><img class="thumb" src="img/<?php echo "" ?>.jpg"></td>
                                   <td><?php echo $produit['designation'] ?></td>
                                   <td><?php echo $produit['prixht'] ?> €</td>
                                   <td><?php echo $produit['tva'] ?> %</td>
-                                  <td><?php echo '<input type="number" value="'.$_SESSION['panier'][$i]['quantity'].'"/>'; ?></td>
+                                  <td><?php echo '<input type="number" name="q" value="'.$_SESSION['panier'][$i]['quantity'].'"/>'; ?></td>
                                   <td><?php echo $price* $_SESSION['panier'][$i]['quantity'] ?> €</td>
                                   <td>
+                                      <input type="hidden" name="index" value="<?php echo $i ?>">
                                       <input type="hidden" name="id" value="<?php echo $_SESSION['panier'][$i]['id'] ?>">
                                       <button type="submit" class="btn btn-primary" name="submit"><span class="glyphicon glyphicon-pencil"></span> Modifier</button>
                                       <button type="submit" class="btn btn-danger" name="submit" formaction="index.php?c=C_Commande&a=supprimer"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
                                   </td>
                               </tr>
                           </form>
-                     <?php }}else{ echo "Panier vide...";} ?>
+                     <?php }}}else{ echo "Panier vide...";} ?>
                   </tbody>
               </table>
               <div class="panel panel-primary">
