@@ -21,7 +21,7 @@ function getClients (){
 
 function ajouterClient ($nom, $prenom, $mail, $mdp, $rue, $complement, $ville, $cp){
 	$cnx = spdo::getDB();
-	$requete = "INSERT INTO client VALUES (:nom,:prenom,:mail,:mdp,:rue,:complement,:ville,:cp)";
+	$requete = "INSERT INTO client (nom,prenom,mail,mdp,rue,complement,ville,cp) VALUES (:nom,:prenom,:mail,:mdp,:rue,:complement,:ville,:cp)";
 	$stmt = $cnx->prepare($requete);
 	$stmt->bindValue(":nom",$nom);
 	$stmt->bindValue(":prenom",$prenom);

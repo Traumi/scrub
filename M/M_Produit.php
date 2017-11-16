@@ -96,4 +96,10 @@ function getLastProduits(){
 	$rqt = "SELECT * FROM produit ORDER BY idProduit DESC LIMIT 4";
 	return $cnx->query($rqt);
 }
+
+function deleteProduit($id){
+	$cnx = spdo::getDB();
+	$rqt = "DELETE FROM produit WHERE idProduit = $id";
+	return $cnx->query($rqt);
+}
 ?>
