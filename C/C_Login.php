@@ -65,6 +65,13 @@ function inscrire(){
           $err[0] = "Erreur lors de l'ajout du client.";
           require("V/login.html");
         }else{
+         $to      = "$mel";
+         $subject = 'Bienvenue sur SCRUB';
+         $message = "Bonjour $prenom $nom, \r\n Nous vous remercions pour votre inscription sur SCRUB. \r\n A+ dans le bus ! \r\ L'Équipe SCRUB";
+         $headers = 'From: clement.touresse@outlook.fr' . "\r\n" .
+         'X-Mailer: PHP/' . phpversion();
+
+          mail($to, $subject, $message, $headers);
           require("V/header.html");
           require("V/accueil.html");
           require("V/footer.html");
