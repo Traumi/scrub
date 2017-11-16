@@ -10,14 +10,14 @@
  */
 function ajouterCommande($mailClient, $rue_facture, $complement_facture, $ville_facture,
 						 $cp_facture, $rue_livraison, $complement_livraison,
-						 $ville_livraison, $cp_livraison, $prixTotal, $date){
+						 $ville_livraison, $cp_livraison, $prixTotal){
 	$cnx = spdo::getDB();
 	$rqt = "INSERT INTO commande(mailClient, rue_fact, complement_fact, ville_fact,
 								 cp_fact, rue_livraison, complement_livraison,
-								 ville_livraison, cp_livraison, prixTotal, date) ";
-	$rqt .= "VALUES(':mailClient', ':rue_facture', ':complement_facture', ':ville_facture',
-				   ':cp_facture', ':rue_livraison', ':complement_livraison',
-				   ':ville_livraison', ':cp_livraison', ':prixTotal', ':date')";
+								 ville_livraison, cp_livraison, prixTotal) ";
+	$rqt .= "VALUES(:mailClient, :rue_facture, :complement_facture, :ville_facture,
+				   :cp_facture, :rue_livraison, :complement_livraison,
+				   :ville_livraison, :cp_livraison, :prixTotal)";
 	$stmt = $cnx->prepare($rqt);
 	$stmt->bindValue(":mailClient", $mailClient);
 	$stmt->bindValue(":rue_facture", $mailClient);
@@ -29,10 +29,9 @@ function ajouterCommande($mailClient, $rue_facture, $complement_facture, $ville_
 	$stmt->bindValue(":ville_livraison", $ville_livraison);
 	$stmt->bindValue(":cp_livraison", $cp_livraison);
 	$stmt->bindValue(":prixTotal", $prixTotal);
-	$stmt->bindValue(":date", $date);
 
 	if($stmt->execute())
-		return true;
+		return $cnx->lastInsertId();
 	return false;
 }
 
