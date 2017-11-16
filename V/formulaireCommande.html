@@ -1,0 +1,118 @@
+<style>
+	form{
+		width:50%;
+		margin:auto;
+	}
+</style>
+
+<form action="index.php?c=C_Commande&a=creerCommande" method="post">
+
+	<h3>Adresse de livraison</h3>
+	<div class="form-group">
+	<label for="Nom">Nom :</label>
+	<input class="form-control" type="text" name="nom" id="Nom" value="<?php echo isset($_SESSION['profil']['nom'])? $_SESSION['profil']['nom'] : ""?>" />
+	</div>
+
+	<div class="form-group">
+	<label for="Prenom">Prénom :</label>
+	<input class="form-control" type="text" name="prenom" id="Prenom" value="<?php echo isset($_SESSION['profil']['prenom'])? $_SESSION['profil']['prenom'] : ""?>" />
+	</div>
+
+	<div class="form-group">
+	<label for="Rue">Rue :</label>
+	<input class="form-control" type="text" name="rue" id="Rue" value="<?php echo isset($_SESSION['profil']['rue'])? $_SESSION['profil']['rue'] : ""?>" />
+	</div>
+
+	<div class="form-group">
+	<label for="Complement">Complément d'adresse :</label>
+	<input class="form-control" type="text" name="complement" id="Complement"  value="<?php echo isset($_SESSION['profil']['complement'])? $_SESSION['profil']['complement'] : ""?>" />
+	</div>
+
+	<div class="form-group">
+	<label for="Ville"> Ville :</label>
+	<input class="form-control" type="text" name="ville" id="Ville"  value="<?php echo isset($_SESSION['profil']['ville'])? $_SESSION['profil']['ville'] : ""?>" />
+	</div>
+
+	<div class="form-group">
+	<label for="CP">Code Postal :</label>
+	<input class="form-control" type="text" name="cp" id="CP" value="<?php echo isset($_SESSION['profil']['cp'])? $_SESSION['profil']['cp'] : ""?>" />
+	</div>
+
+
+
+
+<!-- Info paiement -->
+	<h3>Informations de paiement</h3>
+	<div class="form-group">
+	<label for="Nom_Carte">Nom :</label>
+	<input class="form-control" type="text" name="nom_carte" id="Nom_Carte" value="<?php echo "M ".strtoupper($_SESSION['profil']['nom'])." ".strtoupper($_SESSION['profil']['prenom']); ?>" />
+	</div>
+	<div class="form-group">
+	<label for="Num_Carte">Numéro de carte :</label>
+	<input class="form-control" type="text" name="num_carte" id="Num_Carte" pattern="[0-9]{16}" />
+	</div>
+	<div class="form-group">
+	<label for="cvc">Cryptogramme de sécurité :</label>
+	<input class="form-control" type="text" name="cvc" id="cvc" pattern="[0-9]{3}" placeholder="000"/>
+	</div>
+	<div class="form-group">
+	<label for="mois_expir">Date d'expiration :</label>
+	<select class="form-control" name="mois_expir" id="mois_expir" style="width:70px;display:inline-block;">
+		<?php for($i=1; $i<=12; $i++) : ?>
+			<option value="<?php echo $i<1 ? "0".$i : $i;?>"><?php echo $i<1 ? "0".$i : $i;?></option>
+		<?php endfor; ?>
+	</select>
+	<select class="form-control" name="annee_expir" id="annee_expir" style="width:110px;display:inline-block;">
+		<?php for($i=date(Y); $i<=(date(Y)+20); $i++) : ?>
+			<option value="<?php echo $i<1 ? "0".$i : $i;?>"><?php echo $i<1 ? "0".$i : $i;?></option>
+		<?php endfor; ?>
+	</select>
+	</div>
+	<input class="btn btn-primary" type="submit" value="Continuer"/>
+
+	<br/>
+	<p> Ou payez avec Paypal</p>
+	<div id="paypal-button"></div>
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        paypal.Button.render({
+            env: 'production', // Or 'sandbox',
+
+			client:{
+				sandbox:'ATpCXE0rx4BUXotO5cV6idxXfHHRvnmvjE4DlTcMAdMgakDQP4tkbrD6sY4PCwKX3Qagd0jf1Pql7RqN',
+				production:'AU1Ko5CyIiF9-Z-JgI6PfSU9n4izZWl6yb4ms3hELn4W5EG1NqxBcp05iFzD4oLPKuD6B_iX1aBsgPE5'
+			},
+            commit: true, // Show a 'Pay Now' button
+            style: {
+                color: 'blue',
+                size: 'small'
+            },
+            payment: function(data, actions) {
+				return actions.payment.create({
+					payment: {
+						transactions: [
+							{
+								amount: { total: '<?php echo $_SESSION['panier']['total'] ?>', currency: 'EUR' }
+							}
+						]
+					}
+				});
+			},
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function(payment) {
+				});
+            },
+            onCancel: function(data, actions) {
+                /*
+                 * Buyer cancelled the payment
+                 */
+            },
+            onError: function(err) {
+                /*
+                 * An error occurred during the transaction
+                 */
+            }
+        }, '#paypal-button');
+    </script>
+
+</form>

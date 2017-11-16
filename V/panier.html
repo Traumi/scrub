@@ -55,8 +55,11 @@ if(isset($_SESSION['panier'])){
                       <h4>Récapitulatif</h4>
                   </div>
                     <div class="panel-body">
-                        <h4>Prix total : <?php echo $prixTotal ?> €</h4>
-                        <h4>Nombre total de produits : <?php echo $nbProduit ?></h4>
-                        <h3><a href="index.php?c=C_Commande&a=vider" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Vider le panier</a>  <a href="index.php?c=C_Commande&a=paiement" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>  Valider ma commande</a></h3>
+                        <h4>Prix total : <?php echo $prixTotal; ?> €</h4>
+                        <h4>Nombre total de produits : <?php echo $nbProduit; ?></h4>
+                        <h3>
+                          <a href="index.php?c=C_Commande&a=vider" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Vider le panier</a>
+                          <a href="index.php?c=C_Commande&a=paiement" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>  Valider ma commande</a>
+                        </h3>
                     </div>
               </div>
