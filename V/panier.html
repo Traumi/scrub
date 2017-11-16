@@ -21,7 +21,7 @@ if(isset($_SESSION['panier'])){
                   <tbody>
                       <?php
 
-                      for($i = 0 ; $i < sizeof($_SESSION['panier']) ; $i++){
+                      for($i = 0 ; $i < count($_SESSION['panier']) ; $i++){
                         $produit = getProduitById($_SESSION['panier'][$i]['id'])->fetch();
                         $price =  $produit['prixht']+($produit['prixht']*$produit['tva']/100);
                         $prixTotal += $price * $_SESSION['panier'][$i]['quantity'];
