@@ -7,6 +7,12 @@ function existClient($mail){
 	return $cnx->query($requete)->fetch();
 }
 
+function supprClient($mail){
+	$cnx = spdo::getDB();
+	$requete = "DELETE FROM client WHERE mail = '$mail'";
+	return $cnx->query($requete);
+}
+
 function getClient ($mail){
 	$cnx = spdo::getDB();
 	$requete = "SELECT nom, prenom, mail, rue, complement, ville, cp FROM client WHERE mail = '$mail'";
@@ -43,28 +49,26 @@ function authClient($mail,$mdp){
 	return $cnx->query($requete)->fetch()['mail'];
 }
 
-function modifClient($nom, $prenom, $mail, $mdp, $rue, $complement, $ville, $cp, $currentMail){
+function modifClient($nom, $prenom, $mail, $rue, $complement, $ville, $cp, $currentMail){
 	$cnx = spdo::getDB();
-	$requete = "UPDATE client";
-	$requete .= "nom = ':nom'";
-	$requete .= "prenom = ':prenom'";
-	$requete .= "mail = ':mail'";
-	$requete .= "mdp = ':mdp'";
-	$requete .= "rue = ':rue'";
-	$requete .= "complement = ':complement'";
-	$requete .= "ville = ':ville'";
-	$requete .= "cp = ':cp'";
-	$requete .= "WHERE mail = :currentMail";
+	$requete = "UPDATE client SET ";
+	$requete .= "nom = :nom , ";
+	$requete .= "prenom = :prenom , ";
+	$requete .= "mail = :mail , ";
+	$requete .= "rue = :rue , ";
+	$requete .= "complement = :complement , ";
+	$requete .= "ville = :ville , ";
+	$requete .= "cp = :cp ";
+	$requete .= "WHERE mail = :currentMail ";
 	$stmt = $cnx->prepare($requete);
 	$stmt->bindValue(":nom",$nom);
 	$stmt->bindValue(":prenom",$prenom);
 	$stmt->bindValue(":mail",$mail);
-	$stmt->bindValue(":mdp",$mdp);
 	$stmt->bindValue(":rue",$rue);
 	$stmt->bindValue(":complement",$complement);
 	$stmt->bindValue(":ville",$ville);
 	$stmt->bindValue(":cp",$cp);
 	$stmt->bindValue(":currentMail",$currentMail);
 	$client = $stmt->execute();
-	return getClient($cnx->lastInsertId());
+	return getClient($currentMail);
 }
