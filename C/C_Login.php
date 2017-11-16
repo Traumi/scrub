@@ -6,7 +6,7 @@ function connecter(){
   isset($_POST['pass'])?$pass=$_POST['pass']:$pass="";
 
   if($mel != "" && $pass != ""){
-    if(authClient($mel, $pass)){
+    if(authClient($mel, $pass) != ""){
       $tmp = getClient($mel);
       $_SESSION['profil']['mail'] = $tmp['mail'];
       $_SESSION['profil']['nom'] = $tmp['nom'];
@@ -65,12 +65,19 @@ function inscrire(){
           $err[0] = "Erreur lors de l'ajout du client.";
           require("V/login.html");
         }else{
-         $to      = "$mel";
-         $subject = 'Bienvenue sur SCRUB';
-         $message = "Bonjour $prenom $nom, \r\n Nous vous remercions pour votre inscription sur SCRUB. \r\n A+ dans le bus ! \r\ L'Équipe SCRUB";
-         $headers = 'From: clement.touresse@outlook.fr' . "\r\n" .
-         'X-Mailer: PHP/' . phpversion();
-
+          $tmp = getClient($mel);
+          $_SESSION['profil']['mail'] = $tmp['mail'];
+          $_SESSION['profil']['nom'] = $tmp['nom'];
+          $_SESSION['profil']['prenom'] = $tmp['prenom'];
+          $_SESSION['profil']['rue'] = $tmp['rue'];
+          $_SESSION['profil']['complement'] = $tmp['complement'];
+          $_SESSION['profil']['ville'] = $tmp['ville'];
+          $_SESSION['profil']['cp'] = $tmp['cp'];
+          $to = "$mel";
+          $subject = 'Bienvenue sur SCRUB';
+          $message = "Bonjour $prenom $nom, \r\n Nous vous remercions pour votre inscription sur SCRUB. \r\n A+ dans le bus ! \r\ L'Équipe SCRUB";
+          $headers = 'From: clement.touresse@outlook.fr' . "\r\n" .
+          'X-Mailer: PHP/' . phpversion();
           mail($to, $subject, $message, $headers);
           require("V/header.html");
           require("V/accueil.html");
