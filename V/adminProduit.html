@@ -27,7 +27,10 @@
 							<input type="text" id="description" name="description" class="form-control" value="<?php echo $produit["description"]?>">
 						</td>
 						<td>
-							<input type="text" id="url" name="url" class="form-control" value="<?php echo $image["url"]?>">
+							<?php
+					      $url = getImageByIdproduit($produit['idProduit'])->fetch()['url'];
+					    ?>
+							<input type="text" id="url" name="url" class="form-control" value="<?php echo $url?>">
 						</td>
 						<td>
 							<button type = "submit" class="btn btn-success">Modifier</button>
@@ -40,7 +43,7 @@
 			<?php endforeach; ?>
 		</table>
 		<br/>
-		<form action="index&" method="post">
+		<form action="index.php?c=C_Produit&a=ajout" method="post">
 			<button type="submit" class="btn btn-success">Ajouter Produit</button>
 		</form>
 	</div>
