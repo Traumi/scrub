@@ -26,7 +26,7 @@ function ajouterProduit($designation, $prixHt, $tva, $description){
  */
 function setDesignation($idProduit, $designation){
 	$cnx = spdo::getDB();
-	$rqt = "INSERT INTO produit(designation) VALUES(:designation) WHERE idProduit = :idProduit";
+	$rqt = "UPDATE produit SET designation = :designation WHERE idProduit = :idProduit";
 	$stmt = $cnx->prepare($rqt);
 	$stmt->bindValue(":idProduit", $idProduit);
 	$stmt->bindValue(":designation", $designation);
@@ -36,7 +36,7 @@ function setDesignation($idProduit, $designation){
 }
 function setPrixHt($idProduit, $newPrix){
 	$cnx = spdo::getDB();
-	$rqt = "INSERT INTO produit(prixHt) VALUES(:prixHt) WHERE idProduit = :idProduit";
+	$rqt = "UPDATE produit SET prixht = :prixHt WHERE idProduit = :idProduit";
 	$stmt = $cnx->prepare($rqt);
 	$stmt->bindValue(":idProduit", $idProduit);
 	$stmt->bindValue(":prixHt", $newPrix);
@@ -46,7 +46,7 @@ function setPrixHt($idProduit, $newPrix){
 }
 function setTva($idProduit, $tva){
 	$cnx = spdo::getDB();
-	$rqt = "INSERT INTO produit(tva) VALUES(:tva) WHERE idProduit = :idProduit";
+	$rqt = "UPDATE produit SET tva = :tva WHERE idProduit = :idProduit";
 	$stmt = $cnx->prepare($rqt);
 	$stmt->bindValue(":idProduit", $idProduit);
 	$stmt->bindValue(":tva", $tva);
@@ -56,7 +56,7 @@ function setTva($idProduit, $tva){
 }
 function setDescription($idProduit, $description){
 	$cnx = spdo::getDB();
-	$rqt = "INSERT INTO produit(description) VALUES(:description) WHERE idProduit = :idProduit";
+	$rqt = "UPDATE produit SET description = :description WHERE idProduit = :idProduit";
 	$stmt = $cnx->prepare($rqt);
 	$stmt->bindValue(":idProduit", $idProduit);
 	$stmt->bindValue(":description", $description);

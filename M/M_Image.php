@@ -1,5 +1,4 @@
 <?php
-
 //retourner tous les url correspondant a l'idproduit passé en param
 /*Fonction getImageByIdproduit
 * Permet de selectionner une image dans la base en fonction de son produit correspondant
@@ -28,8 +27,8 @@ function ajouteImage ($idprod, $url){
 */
 function supprImage ($idprod){
 	$cnx = spdo::getDB();
-	$requete = "DELETE FROM image WHERE idprod = :idprod";
-	$stmt = $stmt->prepare($requete);
+	$requete = "DELETE FROM image WHERE idProduit = :idprod";
+	$stmt = $cnx->prepare($requete);
 	$stmt->bindValue(":idprod",$idprod);
 	if($stmt->execute()){
 		return true;
