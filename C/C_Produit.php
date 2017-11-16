@@ -42,8 +42,8 @@ function ajouter(){
 }
 
 function admin(){
-  require("M/M_Produit.php");
-  require("M/M_Image.php");
+  require_once("M/M_Produit.php");
+  require_once("M/M_Image.php");
   $produits = getProduits();
   require("V/header.html");
   require("V/adminProduit.html");
@@ -51,6 +51,36 @@ function admin(){
 }
 
 function modifier(){
+  require_once("M/M_Produit.php");
+  require_once("M/M_Image.php");
+  if(isset($_POST["id"])){
+    $id = $_POST['id'];
+    if(isset($_POST["designation"])){
+      setDesignation($id,$_POST["designation"]);
+    }
+    if(isset($_POST["prixht"])){
+      setPrixHt($id,$_POST["prixht"]);
+    }
+    if(isset($_POST["tva"])){
+      setTva($id,$_POST["tva"]);
+    }
+    if(isset($_POST["description"])){
+      setDescription($id,$_POST["description"]);
+    }
+    if(isset($_POST["url"])){
+      supprImage($id);
+      ajouteImage($id,$_POST["url"]);
+    }
+    $info = array();
+    $info[0] = "Le produit #$id a bien été modifié !";
+  }else{
+    $err = array();
+    $err[0] = "L'identifiant du produit est introuvable...";
+  }
+  $produits = getProduits();
+  require("V/header.html");
+  require("V/adminProduit.html");
+  require("V/footer.html");
 
 }
 
