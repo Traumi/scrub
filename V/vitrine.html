@@ -4,8 +4,7 @@
         padding:2px;
       }
       .card-body{
-        border-left : solid black 1.5px;
-        border-right : solid black 1.5px;
+        border : solid lightgrey 1.5px;
         width:100%;
         border-radius : 10px;
         padding-left : 15px;
@@ -13,31 +12,60 @@
         padding-top : 1px;
         padding-bottom : 5px;
       }
+      .card-text{
+        word-break: break-all;
+      }
+      hr{
+        border-color: lightgrey;
+      }
       .fond{
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: 100%;
+        background-size: auto 100%;
         border: solid lightgrey 1px;
-        border-radius:5px;
+        border-radius:3px;
         margin-top:10px;
-        width: 100%;
+        width: 80%;
+        margin-left:10%;
         padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        transition:1s;
+
       }
       .card-title{
         text-decoration:underline;
         font-weight:600;
       }
-    </style>
-    <div class="card col-md-3 col-xs-6">
-        <?php $url = getImageByIdproduit($produit['idProduit'])->fetch()['url'] ?>
+      a:hover{
+        text-decoration: none;
+        color:black;
+      }
 
-        <div class="card-body">
-              <!--<img class="card-img-top" src="<?php echo $url ?>" alt="Image du produit <?php echo $produit["designation"] ?>">-->
-              <div class="fond" style="background-image: url('<?php echo $url ?>');"></div>
-              <hr/>
-              <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
-              <p class="card-text">"<?php echo $produit["description"] ?>"</p>
-              <a class="btn btn-success" href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit['idProduit'] ?>" class="btn btn-success">Voir le produit</a>
-        </div>
+      a:hover>.card-body>.fond{
+        background-size: auto 120%;
+        transition:1s;
+        /*-webkit-filter: blur(1px);
+        -moz-filter: blur(1px);
+        -o-filter: blur(1px);
+        -ms-filter: blur(1px);
+        filter: blur(1px);*/
+        opacity:0.7;
+      }
+
+      a{
+        color:black;
+      }
+    </style>
+    <div class="card col-md-2 col-xs-4">
+        <?php $url = getImageByIdproduit($produit['idProduit'])->fetch()['url'] ?>
+        <a href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit['idProduit'] ?>">
+          <div class="card-body">
+                <!--<img class="card-img-top" src="<?php echo $url ?>" alt="Image du produit <?php echo $produit["designation"] ?>">-->
+                <div class="fond" style="background-image: url('<?php echo $url ?>');"></div>
+                <hr/>
+                <h4 class="card-title"><?php echo $produit["designation"] ?></h4>
+                <p class="card-text">"<?php echo substr($produit["description"],0,20)."..."; ?>"</p>
+                <!--<a class="btn btn-success" href="index.php?c=C_Produit&a=voirdetail&id=<?php echo $produit['idProduit'] ?>">Voir le produit</a>-->
+          </div>
+        </a>
     </div>
 <?php endforeach; ?>
