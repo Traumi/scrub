@@ -1,34 +1,48 @@
+ <h3>Votre panier</h3>
+<?php
 
- <h3>Votre panier</h3>          
+$prixTotal = 0;
+$nbProduit = 0;
+if(isset($_SESSION['panier'])){
+
+?>
               <table class="table table-responsive table-striped table-condensed">
                   <thead>
                       <tr>
                           <th></th>
                           <th>Nom</th>
                           <th>Prix</th>
+                          <th>TVA</th>
                           <th>Quantité</th>
                           <th>Sous-total</th>
                           <th></th>
                       </tr>
                   </thead>
                   <tbody>
-                      <?php foreach ($panier as $reference => $produit) : ?>
+                      <?php
+
+                      for($i = 0 ; $i < sizeof($_SESSION['panier']) ; $i++){
+                        $produit = getProduitById($_SESSION['panier'][$i]['id'])->fetch();
+                        $price =  $produit['prixht']+($produit['prixht']*$produit['tva']/100);
+                        $prixTotal += $price * $_SESSION['panier'][$i]['quantity'];
+                        $nbProduit += $_SESSION['panier'][$i]['quantity'];
+                      ?>
                           <form action="index.php?c=C_Panier&a=miseajour" method="post">
                               <tr>
-                                  <td><img class="thumb" src="img/<?php echo $cartProducts[$reference]["image"] ?>.jpg"></td>
-                                  <td><?php echo $produit[$reference]["nom"] ?></td>
-                                  <td><?php echo $produit[$reference]["prix"] ?> €</td>
+                                  <td><img class="thumb" src="img/<?php echo "" ?>.jpg"></td>
+                                  <td><?php echo $produit['designation'] ?></td>
+                                  <td><?php echo $produit['prixht'] ?> €</td>
+                                  <td><?php echo $produit['tva'] ?> %</td>
+                                  <td><?php echo '<input type="number" value="'.$_SESSION['panier'][$i]['quantity'].'"/>'; ?></td>
+                                  <td><?php echo $price* $_SESSION['panier'][$i]['quantity'] ?> €</td>
                                   <td>
-                                      <input type="hidden" name="id" value="<?php echo $cartProducts[$reference]["id"] ?>">
-                                      <input type="hidden" name="index" value="<?php echo $cartProducts[$reference]["name"] ?>">
-                                      <input type="hidden" name="name" value="<?php echo $cartProducts[$reference]["name"] ?>">
-                                      <input type="hidden" name="price" value="<?php echo $cartProducts[$reference]["price"] ?>">
+                                      <input type="hidden" name="id" value="<?php echo $_SESSION['panier'][$i]['id'] ?>">
                                       <button type="submit" class="btn btn-primary" name="submit"><span class="glyphicon glyphicon-pencil"></span> Modifier</button>
-                                      <button type="submit" class="btn btn-danger" name="submit" formaction="index.php?c=C_Panier&a=supprimer"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+                                      <button type="submit" class="btn btn-danger" name="submit" formaction="index.php?c=C_Commande&a=supprimer"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
                                   </td>
                               </tr>
                           </form>
-                     <?php endforeach; ?>
+                     <?php }}else{ echo "Panier vide...";} ?>
                   </tbody>
               </table>
               <div class="panel panel-primary">
@@ -36,8 +50,8 @@
                       <h4>Récapitulatif</h4>
                   </div>
                     <div class="panel-body">
-                        <h4>Prix total : <?php echo $cart->totalPrice() ?> €</h4>
-                        <h4>Nombre total de produits : <?php echo $cart->productsNumber() ?></h4>
-                        <h3><a href="index.php?c=C_Panier&a=vider" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Vider le panier</a>  <a href="index.php?c=C_Commande&a=paiement" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>  Valider ma commande</a></h3>
+                        <h4>Prix total : <?php echo $prixTotal ?> €</h4>
+                        <h4>Nombre total de produits : <?php echo $nbProduit ?></h4>
+                        <h3><a href="index.php?c=C_Commande&a=vider" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>  Vider le panier</a>  <a href="index.php?c=C_Commande&a=paiement" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span>  Valider ma commande</a></h3>
                     </div>
               </div>
