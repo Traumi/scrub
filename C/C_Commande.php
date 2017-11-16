@@ -17,7 +17,7 @@ function acheter(){
           $isAdded = 1;
         }
       }
-      if(isAdded == 0){
+      if($isAdded == 0){
         $_SESSION['panier'][$taille]['id'] = $_POST['id'];
         $_SESSION['panier'][$taille]['quantity'] = $_POST['quantity'];
       }
@@ -32,6 +32,14 @@ function acheter(){
   }
   require_once("V/header.html");
   require_once("V/Vitrine.html");
+  require_once("V/footer.html");
+}
+
+function panier(){
+  require_once("M/M_Produit.php");
+  require_once("M/M_Image.php");
+  require_once("V/header.html");
+  require_once("V/Panier.html");
   require_once("V/footer.html");
 }
 
