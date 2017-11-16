@@ -11,38 +11,38 @@
     </div>
     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-             <form action="index.php?c=C_Administration&a=modifierClient">
+             <form action="index.php?c=C_Admin&a=modifierClient" method="post">
                   <div class="form-group">
                       <label for="email">Adresse e-mail : </label>
-                      <input type="email" class="form-control" id="email" placeholder="Entrez l'adresse e-mail du client" value="<?php echo $client["mail"] ?>">
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Entrez l'adresse e-mail du client" value="<?php echo $client["mail"] ?>">
                   </div>
                   <div class="form-group">
                       <label for="nom">Nom : </label>
-                      <input type="text" class="form-control" id="nom" placeholder="Entrez le nom du client" value="<?php echo $client["nom"] ?>">
+                      <input type="text" class="form-control" name="nom" id="nom" placeholder="Entrez le nom du client" value="<?php echo $client["nom"] ?>">
                   </div>
                   <div class="form-group">
                       <label for="prenom">Prénom : </label>
-                      <input type="text" class="form-control" id="prenom" placeholder="Entrez le pr�nom du client" value="<?php echo $client["prenom"] ?>">
+                      <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Entrez le prénom du client" value="<?php echo $client["prenom"] ?>">
                   </div>
                   <div class="form-group">
                       <label for="rue">Rue : </label>
-                      <input type="text" class="form-control" id="rue" placeholder="Entrez l'adresse du client" value="<?php echo $client["rue"] ?>">
+                      <input type="text" class="form-control" name="rue" id="rue" placeholder="Entrez l'adresse du client" value="<?php echo $client["rue"] ?>">
                   </div>
                   <div class="form-group">
                       <label for="complement">Complément d'adresse (bâtiment, escalier, numéro de porte etc.) : </label>
-                      <input type="text" class="form-control" id="email" placeholder="Entrez le complément d'adresse du client" value="<?php echo $client["complement"] ?>">
+                      <input type="text" class="form-control" name="complement" id="complement" placeholder="Entrez le complément d'adresse du client" value="<?php echo $client["complement"] ?>">
                   </div>
                   <div class="form-group">
-                      <label for="email">Ville : </label>
-                      <input type="text" class="form-control" id="email" placeholder="Entrez la ville du client" value="<?php echo $client["ville"] ?>">
+                      <label for="ville">Ville : </label>
+                      <input type="text" class="form-control" name="ville" id="ville" placeholder="Entrez la ville du client" value="<?php echo $client["ville"] ?>">
                   </div>
                   <div class="form-group">
-                      <label for="email">Code postal : </label>
-                      <input type="text" class="form-control" id="email" placeholder="Entrez le code postal du client" value="<?php echo $client["cp"] ?>">
+                      <label for="cp">Code postal : </label>
+                      <input type="text" class="form-control" name="cp" id="cp" placeholder="Entrez le code postal du client" value="<?php echo $client["cp"] ?>">
                  </div>
-                  <input type="hidden" name="clientId" value="<?php echo $client["mail"] ?>">
+                  <input type="hidden" name="id" value="<?php echo $client["mail"] ?>">
                   <button type="submit" class="btn btn-primary">Modifier</button>
-                  <button type="submit" class="btn btn-danger" formaction="index.php?c=C_Administration&a=supprimerClient">Supprimer</button>
+                  <button type="submit" class="btn btn-danger" formaction="index.php?c=C_Admin&a=supprimerClient">Supprimer</button>
               </form>
       </div>
     </div>
