@@ -35,6 +35,8 @@ function ajouter(){
   //var_dump($_POST);
   if(isset($_POST['designation']) && isset($_POST['prixht']) && isset($_POST['tva']) && isset($_POST['description'])){
     ajouterProduit($_POST['designation'], $_POST['prixht'], $_POST['tva'], $_POST['description']);
+    $info = array();
+    $info[0] = "Produit ajouté avec succès !";
   }
   require("V/header.html");
   require("V/ajoutProduit.html");
@@ -59,7 +61,9 @@ function modifier(){
       setDesignation($id,$_POST["designation"]);
     }
     if(isset($_POST["prixht"])){
-      setPrixHt($id,$_POST["prixht"]);
+      if($_POST["prixht"]<0) $prix = 0;
+      else $prix = $_POST["prixht"];
+      setPrixHt($id,$prix);
     }
     if(isset($_POST["tva"])){
       setTva($id,$_POST["tva"]);
@@ -82,6 +86,20 @@ function modifier(){
   require("V/adminProduit.html");
   require("V/footer.html");
 
+}
+
+function delete(){
+  require_once("M/M_Produit.php");
+  require_once("M/M_Image.php");
+  if(isset($_POST['id'])){
+    deleteProduit($_POST['id']);
+    $info = array();
+    $info[0] = "Produit supprimé avec succès";
+  }
+  $produits = getProduits();
+  require("V/header.html");
+  require("V/adminProduit.html");
+  require("V/footer.html");
 }
 
 ?>

@@ -10,10 +10,10 @@ function acheter(){
     if(isset($_SESSION['panier'])){
       $isAdded = 0;
       $taille = sizeof($_SESSION['panier']);
+
       for($i = 0 ; $i < $taille ; $i++){
-        if($_SESSION['panier'][$i]['id']=$_POST['id']){
+        if($_SESSION['panier'][$i]['id']==$_POST['id']){
           $_SESSION['panier'][$i]['quantity']+=$_POST['quantity'];
-          //var_dump($_SESSION);
           $isAdded = 1;
         }
       }
@@ -36,6 +36,27 @@ function acheter(){
 }
 
 function panier(){
+  require_once("M/M_Produit.php");
+  require_once("M/M_Image.php");
+  require_once("V/header.html");
+  require_once("V/Panier.html");
+  require_once("V/footer.html");
+}
+
+function miseajour(){
+  if(isset($_POST['id']) && isset($_POST['q']) && isset($_POST['index'])){
+    $id = $_POST['id'];
+    $q = $_POST['q'];
+    $index = $_POST['index'];
+    if($q <= 0){
+      $_SESSION['panier'][$index]['quantity'] = 0;
+    }else{
+      $_SESSION['panier'][$index]['quantity'] = $q;
+    }
+  }else{
+    $err = array();
+    $err[0] = "accès non autorisé !";
+  }
   require_once("M/M_Produit.php");
   require_once("M/M_Image.php");
   require_once("V/header.html");
