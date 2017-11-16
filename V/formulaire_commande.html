@@ -48,6 +48,58 @@
 	</select>
    
 	<input type="submit" value="Continuer"/>
+	
+	<br/>
+	<p> Ou payez avec Paypal</p>
+	<div id="paypal-button"></div>
+	<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        paypal.Button.render({
 
+            env: 'production', // Or 'sandbox',
+			
+			client:{
+				sandbox:'ATpCXE0rx4BUXotO5cV6idxXfHHRvnmvjE4DlTcMAdMgakDQP4tkbrD6sY4PCwKX3Qagd0jf1Pql7RqN',
+				production:'AU1Ko5CyIiF9-Z-JgI6PfSU9n4izZWl6yb4ms3hELn4W5EG1NqxBcp05iFzD4oLPKuD6B_iX1aBsgPE5'
+			},
+
+            commit: true, // Show a 'Pay Now' button
+
+            style: {
+                color: 'blue',
+                size: 'small'
+            },
+
+            payment: function(data, actions) {
+				return actions.payment.create({
+					payment: {
+						transactions: [
+							{
+								amount: { total: '1.00', currency: 'EUR' }
+							}
+						]
+					}
+				});
+			},
+
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function(payment) {
+				});
+            },
+
+            onCancel: function(data, actions) {
+                /* 
+                 * Buyer cancelled the payment 
+                 */
+            },
+
+            onError: function(err) {
+                /* 
+                 * An error occurred during the transaction 
+                 */
+            }
+
+        }, '#paypal-button');
+    </script>
 	
 </form>
