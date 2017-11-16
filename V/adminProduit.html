@@ -13,7 +13,8 @@
 			</tr>
 			<?php foreach ($produits as $produit) : ?>
 				<tr>
-					<form action="index.php?" method="post">
+					<form action="index.php?c=C_Produit&a=modifier" method="post">
+						<input type="hidden" name="id" value="<?php echo $produit["idProduit"]?>">
 						<td>
 							<input type="text" id="designation" name="designation" class="form-control" value="<?php echo $produit["designation"]?>">
 						</td>

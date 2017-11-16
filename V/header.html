@@ -60,3 +60,21 @@
       </div>
     </nav>
     <div style="height:55px;"></div>
+    <?php
+      if(isset($err)){
+        for($i=0;$i<sizeof($err);$i++){
+          echo '<div class="alert alert-danger" style="text-align:center;margin:10px;">';
+          echo '<strong>Erreur : </strong>';
+          echo $err[$i];
+          echo '</div>';
+        }
+      }
+      if(isset($info)){
+        for($i=0;$i<sizeof($info);$i++){
+          echo '<div class="alert alert-success" style="text-align:center;margin:10px;">';
+          echo '<strong>Info : </strong>';
+          echo $info[$i];
+          echo '</div>';
+        }
+      }
+    ?>
